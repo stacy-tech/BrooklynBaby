@@ -7,32 +7,27 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
   </head>
 
   <body>
-    <div class="container">
-    <div class="col-md-8 col-md-offset-2" style="text-align: center;">
-        <h2>Welcome to BrooklynBaby</h2>
-      
-        <p>Find trusted caregivers for your every need!</p>
-      
+
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Log out", logout_path, method: :delete %></li>
+        </ul>
       </div>
+    </header
+
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
     </div>
 
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="/">Brooklyn Baby</a>
-      <form class="form-inline">
-        <a class="btn btn-outline-primary" href="/login" role="button">
-        Login
-        </a>
-        <div style="padding-left: 10px;">
-          <a class="btn btn-outline-success" href="/signup" role="button">
-          Signup 
-          </a>
-        </div>
-      </form>
-    </nav>
-
-
+    <%= yield %>
   </body>
 </html>
