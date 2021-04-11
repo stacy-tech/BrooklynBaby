@@ -10,8 +10,29 @@
   </head>
 
   <body>
-  
+    <div class="container">
+    <div class="col-md-8 col-md-offset-2" style="text-align: center;">
+        <h2>Welcome to BrooklynBaby</h2>
+      
+        <p>Find trusted caregivers for your every need!</p>
+      
+      </div>
+    </div>
 
-    <%= yield %>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="/">Brooklyn Baby</a>
+      <form class="form-inline">
+        <a class="btn btn-outline-primary" href="/login" role="button">
+        Login
+        </a>
+        <div style="padding-left: 10px;">
+          <a class="btn btn-outline-success" href="/signup" role="button">
+          Signup 
+          </a>
+        </div>
+      </form>
+    </nav>
+
+
   </body>
 </html>
