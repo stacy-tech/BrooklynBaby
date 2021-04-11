@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    
+    @users = User.all
   end
 
   def new
@@ -9,12 +9,13 @@ class UsersController < ApplicationController
       
   def create
     @user = User.new(user_params)
-    if @user.save
-      flash[:success] = "Welcome!"
+    if @user.valid?
+      @user.save
       session[:user_id] = @user.id 
-      redirect_to @user
+      redirect_to user_path(@user)
     else
-      render :new
+      flash[:errors] = @user.errors.full_messages
+      rdirect_to new_user_path
     end
   end
 

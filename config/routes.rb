@@ -12,12 +12,8 @@ Rails.application.routes.draw do
 
  #  get 'auth/facebook', to: 'sessions#facebook'
 
+  resources :users
   resources :sitters
-  resources :users do 
-    resources :bookings
-  end
-  resources :sitters do
-    resources :bookings
-  end
+  resources :bookings
 
 end
