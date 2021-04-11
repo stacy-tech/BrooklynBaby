@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
         @user = User.find_by_email(params["email"])
         if @user && @user.authenticate(params["password"])
             session["user_id"] = @user.id 
+            flash[:success] = "sucessfully logged in"
             redirect_to user_path(@user)
         else
             flash[:error] = "invalid credentials"
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        session.delete :user_id
+        session.clear
         redirect_to root_path
     end
 end
