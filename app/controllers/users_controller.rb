@@ -13,11 +13,14 @@ class UsersController < ApplicationController
       @user.save
       session[:user_id] = @user.id 
       flash[:notice] = "Account Successfully created!"
-      redirect_to root_path
+      redirect_to @user
     else
       flash[:errors] = @user.errors.full_messages
       render :new
     end
+  end
+
+  def bookings
   end
 
   def show

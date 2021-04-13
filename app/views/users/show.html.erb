@@ -1,8 +1,8 @@
 <div class="home">
     <h1>Hello <%= @user.name %></h1>
     <p class="text-light">Address: <%= @user.address %></p>
-    <p class="text-light">Email: <%= @user.email %></p>
     <p class="text-light">Telephone_number: <%= @user.telephone_number %></p>
+    <p class="text-light">Email: <%= @user.email %></p>
     <% if @user.image %>
         <img class="prof-image" src=<%= @user.image %> alt="user profile picture">
     <% end %>
