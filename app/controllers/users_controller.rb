@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  def index
-    @users = User.all
-  end
+  # def index
+  #   @users = User.all
+  # end
 
   def new
     @user = User.new
@@ -12,10 +12,11 @@ class UsersController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id 
-      redirect_to user_path(@user)
+      flash[:notice] = "Account Successfully created!"
+      redirect_to root_path
     else
       flash[:errors] = @user.errors.full_messages
-      rdirect_to new_user_path
+      render :new
     end
   end
 
@@ -23,8 +24,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-   private
+   private #strong parameters
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
