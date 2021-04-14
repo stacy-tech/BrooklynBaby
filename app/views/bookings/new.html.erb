@@ -1,27 +1,23 @@
-<h1>New Booking!</h1>
+<% if logged_in? %> 
+    <% if is_users_booking?(@booking) %> 
+        <%= render 'errors' %> 
 
-<%= render partial: "layouts/errors", locals: {object: @blog} %>
-<%= form_for(@booking) do |f| %>
-  <%= f.label "Choose your City:" %>
-  <%= f.collection_select :city_id, City.all, :id, :name, include_blank: true %><br>
-  <br>
+        <h1> Book a new Sitter </h1> 
 
-  </p>
+        <%= form_for(@booking) do |f| %>
+            <%= f.hidden_field :user_id %> 
+            <h3> Choose your stylist </h3>
+            <%= f.collection_select :employee_id, Employee.all, :id, :name %> <br> <br> <br> <br> 
 
-  <br>
-  <br>
+            <h3> Choose time </h3> 
 
-  <%= f.label :title %><br>
-  <br>
-  <%= f.text_field :title %><br>
-  <br>
+            <%= render 'time' %> 
 
-  <%= f.label :content %><br>
-  <br>
-  <%= f.text_area :content %><br>
-  <br>
-
-  <%= f.submit "Submit", class: "btn btn-primary btn-lg" %><br>
-  <br>
-
-<% end %>
+            <div class="field <%= ' field_with_errors' if @appointment.errors[:time].any? %>">
+            <%= f.datetime_select :time %> 
+            </div>
+            <br> <br> <br> <br> <br>
+            <%= f.submit "Make a Booking" %> 
+        <% end %> 
+    <% end %> 
+<% end %> 

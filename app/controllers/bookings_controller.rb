@@ -2,59 +2,66 @@ class BookingsController < ApplicationController
     
 
     def new
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @booking = @user.bookings.create
-        else
-            @booking = Booking.new
-        end
-    end
-
-    def index
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @bookings = @user.bookings.current
-        else
-            @bookings = Booking.current
-        end
+        @booking = Booking.new(user_id: params[:user_id])
     end
 
     def create
-        @booking = current_user.bookings.create(booking_params)
+        @booking = Booking.new(booking_params)
         if @booking.save
-            redirect_to bookings_path
+            if logged_in?
+                if is_users_booking?(@booking)
+                    flash[:notice] = "Booking Successfully booked."
+                    redirect_to user_booking_path(@booking.user_id, @booking.id)
+                end
+            end
         else
             render :new
         end
     end
 
-    def show; end
-
-    def destroy
-        @booking.destroy
-        redirect_to current_user
+    def show
+        get_booking_and_user
     end
 
-    def edit; end
+    def destroy
+        @booking = Booking.find(params[:id])
+        if logged_in?
+            if is_users_booking?(@booking)
+                @booking.destroy
+                    flash[:error] = "Booking deleted."
+                    redirect_to root_path
+                end
+            end
+        else
+        
+    end
+
+    def edit
+        get_booking_and_user
+    end
 
     def update
+        @booking = Booking.find(params[:id])
         if @booking.update(booking_params)
-            redirect_to booking_path(@booking)
+            if logged_in?
+                if is_users_booking?(@booking)
+                    flash[:notice] = "Booking Updated Successfully"
+                    redirect_to booking_path(@booking.id)
+                end
+            end
         else
             render :edit
-        end
     end
 
     private
 
-    def set_booking
-        @booking = Booking.find(params[:id])
-    end
-
-    def authenticate_user!
-        redirect_to bookings_path if @booking.user != current_user
-    end
-
     def booking_params
         params.require(:booking).permit(:availability, :time, :date, :status)
+    end
+
+    def get_booking_and_user
+        @booking = Booking.find_by(id: params[:id])
+        @user = User.find_by(id: @booking.user_id)
     end
 
 end
