@@ -15,16 +15,15 @@ class UsersController < ApplicationController
       flash[:notice] = "Account Successfully created!"
       redirect_to @user
     else
-      flash[:errors] = @user.errors.full_messages
+      # flash[:errors] = @user.errors.full_messages
       render :new
     end
   end
 
-  def bookings
-  end
-
   def show
+    redirect_if_not_logged_in
     @user = User.find(params[:id])
+    redirect_to '/' if !@user
   end
 
    private #strong parameters
