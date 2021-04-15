@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-  # def index
-  #   @users = User.all
-  # end
-
+  
   def new
     @user = User.new
   end
@@ -24,7 +21,7 @@ class UsersController < ApplicationController
     @bookings = @user.bookings
   end
 
-   private #strong parameters
+   private 
   def user_params
     params.require(:user).permit(:name, :type, :email, :password, :password_confirmation)
   end
