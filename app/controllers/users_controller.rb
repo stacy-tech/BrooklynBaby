@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id 
       flash[:notice] = "Account Successfully created!"
-      redirect_to bookings_path
+      redirect_to user_path(@user)
     else
-      # flash[:errors] = @user.errors.full_messages
+      flash[:errors] = @user.errors.full_messages
       render :new
     end
   end
@@ -22,11 +22,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @bookings = @user.bookings
-    
   end
 
    private #strong parameters
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :type, :email, :password, :password_confirmation)
   end
 end

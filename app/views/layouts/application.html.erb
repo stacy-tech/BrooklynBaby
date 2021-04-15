@@ -30,7 +30,7 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
+                <%= link_to "Logout", logout_path, method: :delete %>
               </li>
             <% end %>
             <li class="nav-item dropdown">
@@ -47,6 +47,9 @@
       </nav>
       <% if flash[:error] %>
         <%= flash[:error] %>
+      <% end %>
+      <% if flash[:success] %>
+        <%= flash[:success] %>
       <% end %>
         <%= yield %>
 

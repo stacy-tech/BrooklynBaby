@@ -12,7 +12,11 @@ class BookingsController < ApplicationController
                 if is_users_booking?(@booking)
                     flash[:notice] = "Booking Successfully booked."
                     redirect_to user_booking_path(@booking.user_id, @booking.id)
+                else
+                    redirect_to home_path
                 end
+            else
+                redirect_to login_path
             end
         else
             render :new
