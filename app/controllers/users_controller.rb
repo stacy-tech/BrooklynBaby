@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   end
       
   def create
-    @user = User.new(user_params)
+    byebug
+     if user_params[:type] == "parent"
+      @user = User.new(user_params)
+    else
+      @user = Sitter.new(user_params)
+    end
     if @user.save
       session[:user_id] = @user.id 
       flash[:notice] = "Account Successfully created!"
@@ -23,6 +28,6 @@ class UsersController < ApplicationController
 
    private 
   def user_params
-    params.require(:user).permit(:name, :type, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :role, :email, :password, :password_confirmation)
   end
 end

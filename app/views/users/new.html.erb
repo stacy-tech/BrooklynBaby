@@ -17,11 +17,11 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
 
-    <%= f.label :type, "sitter" %>
-    <%= f.radio_button :type, "sitter" %>
+    <%= f.label :role, "sitter" %>
+    <%= f.radio_button :role, "sitter" %>
 
-    <%= f.label :type, "parent" %>
-    <%= f.radio_button :type, "parent" %>
+    <%= f.label :role, "parent" %>
+    <%= f.radio_button :role, "parent" %>
 
     <%= f.submit "Sign Up", class: "btn btn-primary" %>
   <% end %>

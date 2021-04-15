@@ -18,9 +18,14 @@ Rails.application.routes.draw do
 
  #  get 'auth/facebook', to: 'sessions#facebook'
 
-  resources :users
+  
   resources :users do
-    resources :bookings
+    resources :bookings, only: [:index]
+  end
+
+  
+  resources :sitters do
+    resources :bookings, shallow: true #creates : index new and create nested 
   end
   
 
