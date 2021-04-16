@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # logout route
   delete '/logout', to: 'sessions#destroy'
 
- #  get 'auth/facebook', to: 'sessions#facebook'
+  get '/auth/:provider/callback' => 'sessions#omniauth'
 
   
   resources :users do
