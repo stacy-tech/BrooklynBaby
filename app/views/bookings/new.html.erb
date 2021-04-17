@@ -1,3 +1,29 @@
-<h1> Book a New Sitter </h1> 
+<h1>Booking</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <%= form_for(@booking) do |f| %>
+
+      <%= f.hidden_field :user_id, :value => session[:user_id] %>
+        
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :age %>
+        <%= f.email_field :age %>
+
+        <%= f.label :time %>
+        <%= f.password_field :time %>
+
+        <%= f.label :date %>
+        <%= f.password_field :date %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+
 
 

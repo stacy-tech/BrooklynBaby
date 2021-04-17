@@ -17,4 +17,14 @@ class BookingsController < ApplicationController
             render :new
         end
     end
+
+    def show 
+        @bookings = Booking.find_by_id(params[:id])
+    end
+
+    private
+
+    def booking_params
+        params.require(L:bookings).permit(:name, :age:, :time, :date)
+    end
 end
