@@ -3,21 +3,21 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
 
-    <%= form_for(@booking) do |f| %>
+    <%= form_for([current_user, @booking]) do |f| %>
 
       <%= f.hidden_field :user_id, :value => session[:user_id] %>
         
-        <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.label :status %>
+        <%= f.text_field :status %>
 
-        <%= f.label :age %>
-        <%= f.email_field :age %>
+        <%= f.label :rate %>
+        <%= f.number_field :rate %>
 
-        <%= f.label :time %>
-        <%= f.password_field :time %>
+        <%= f.label :datetime %>
+        <%= f.text_field :datetime %>
 
-        <%= f.label :date %>
-        <%= f.password_field :date %>
+        <%= f.label :total_hours %>
+        <%= f.number_field :total_hours%>
 
       <%= f.submit "Submit", class: "btn btn-primary" %>
 

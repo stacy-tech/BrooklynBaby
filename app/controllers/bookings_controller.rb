@@ -5,8 +5,15 @@ class BookingsController < ApplicationController
     end
 
     def index
-        @bookings = current_user.bookings
-    end
+        # require 'pry'
+        # binding.pry
+        if current_user.id == params[:user_id].to_i
+            @bookings = current_user.bookings
+        else
+            redirect_to login_path
+        end
+  
+    end 
 
     def create
         @booking = Booking.new(booking_params)
@@ -14,6 +21,8 @@ class BookingsController < ApplicationController
         if @booking.save
             redirect_to booking_path(@booking)
         else
+            require 'pry'
+            binding.pry
             render :new
         end
     end
@@ -24,7 +33,9 @@ class BookingsController < ApplicationController
 
     private
 
-    def booking_params
-        params.require(L:bookings).permit(:name, :age:, :time, :date)
+    def booking_params 
+        # require 'pry'
+        # binding.pry
+        params.require(:booking).permit(:age, :datetime, :rate, :total_hours, :status)
     end
 end

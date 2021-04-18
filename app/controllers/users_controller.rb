@@ -5,8 +5,8 @@ class UsersController < ApplicationController
   end
       
   def create
-    byebug
-     if user_params[:type] == "parent"
+    
+    if user_params[:type] == "parent"
       @user = User.new(user_params)
     else
       @user = Sitter.new(user_params)
