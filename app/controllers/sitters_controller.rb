@@ -6,8 +6,9 @@ class SitterController < ApplicationController
           
     def create
         @sitter = Sitter.new(sitter_params)
+        @sitter.user = current_user
         if @sitter.save
-          session[:user_id] = @user.id 
+          session[:sitter_id] = @sitter.id 
           flash[:notice] = "Account Successfully created!"
           redirect_to sitter_path(@sitter)
         else

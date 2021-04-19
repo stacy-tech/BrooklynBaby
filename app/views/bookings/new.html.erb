@@ -9,8 +9,8 @@
     <%= form_for([current_user, @booking]) do |f| %>
       <br>
       <div class="form-group">
-        <%= f.label :status %>
-        <%= f.text_field :status %>
+        <%= f.label :sitter_id %>
+        <%= f.collection_select :sitter_id, Sitter.all, :id, :name  %>
       </div>
       <br>
 
