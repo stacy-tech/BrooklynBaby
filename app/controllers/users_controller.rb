@@ -5,12 +5,7 @@ class UsersController < ApplicationController
   end
       
   def create
-    
-    if user_params[:type] == "parent"
-      @user = User.new(user_params)
-    else
-      @user = Sitter.new(user_params)
-    end
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id 
       flash[:notice] = "Account Successfully created!"

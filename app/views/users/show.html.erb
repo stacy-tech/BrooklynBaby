@@ -1,6 +1,8 @@
-<div class="home">
-    <h1>Hello <%= @user.name %></h1>
-    <p class="text-light">Address: <%= @user.address %></p>
-    <p class="text-light">Telephone_number: <%= @user.telephone_number %></p>
-    <p class="text-light">Email: <%= @user.email %></p>
+<h1>Hello <%= @user.name %></h1>
+<p class="text-light">Address: <%= @user.address %></p>
+<p class="text-light">Telephone_number: <%= @user.telephone_number %></p>
+<p class="text-light">Email: <%= @user.email %></p>
+
+<div class="center">
+    <%= link_to "Request A Sitter", new_user_booking_path(current_user) %>   
 </div>
