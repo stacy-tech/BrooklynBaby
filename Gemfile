@@ -7,6 +7,7 @@ gem 'pry'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'devise', '~> 4.7', '>= 4.7.3'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
